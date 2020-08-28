@@ -5,8 +5,10 @@ description = ""
 authors = ["aryeguy <arye.guy@gmail.com>"]
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 selenium = "^3.141.0"
+prometheus_client = "^0.8.0"
+money-parser = "^0.0.1"
 
 [tool.poetry.dev-dependencies]
 
