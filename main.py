@@ -9,7 +9,7 @@ from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.firefox.options import Options
 # from selenium.webdriver.chrome.options import Options  
 
-from prometheus_client import Counter, CollectorRegistry, Histogram, push_to_gateway
+from prometheus_client import Gauge, CollectorRegistry, push_to_gateway
 from money_parser import price_str
 
 
@@ -48,6 +48,8 @@ time.sleep(10)
 credit = driver.find_element_by_css_selector(".klnjjw").text
 # TODO Promehtehus pushgateway integration
 credit_amount = price_str(credit)
+credit_gauge = Gauge('tenbis_credit_total', 'Current Credit left on 10bis', registry=prometheus_registry)
+credit_gauge.set(credit_amount)
 print(credit_amount)
 if prometheus_registry is not None:
     push_to_gateway(
